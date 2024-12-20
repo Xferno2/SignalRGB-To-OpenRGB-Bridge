@@ -1,5 +1,5 @@
-const ConsoleWindow = require("node-hide-console-window");
-ConsoleWindow.hideConsole();
+//const ConsoleWindow = require("node-hide-console-window");
+//ConsoleWindow.hideConsole();
 setTimeout(() => {
 var AutoLaunch = require('auto-launch');
 const express = require("express");
@@ -48,7 +48,7 @@ if (fileName.includes("node.exe")) {
 }
 
 if (consoleMode) {
-    ConsoleWindow.showConsole();
+    //ConsoleWindow.showConsole();
     console.log("Console mode enabled");
 }
 
