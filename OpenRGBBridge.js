@@ -347,6 +347,8 @@ class OpenRGBProtocol {
 		})
 
 		//device.log(colors);
+		device.log(colors);
+		device.log (JSON.stringify(colors));
 
 		xhr.open("GET", `http://localhost:9730/setColors?host=${this.host}&port=${this.port}&colors=${JSON.stringify(colors)}&deviceId=${this.deviceId}`, true);
 		xhr.onreadystatechange = function () {

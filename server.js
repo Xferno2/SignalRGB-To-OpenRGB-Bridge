@@ -1,5 +1,3 @@
-//const ConsoleWindow = require("node-hide-console-window");
-//ConsoleWindow.hideConsole();
 setTimeout(() => {
 var AutoLaunch = require('auto-launch');
 const express = require("express");
@@ -14,41 +12,12 @@ let portMatch = false;
 let consoleMode = false;
 let fileName = path.basename(process.execPath);
 
-if (fileName.includes("node.exe")) {
-    fileName = __filename.split("\\").pop().split("/").pop();
-    console.log("Starting js version server: ", fileName, "on port", port);
-    portMatch = fileName.match(/--port=\${(\d+)}/);
-    consoleMode = fileName.includes("--console");
-} else {
-    console.log("Starting exe version server: ", fileName, "on port", port);
-    portMatch = fileName.match(/--port=\${(\d+)}/);
-    consoleMode = fileName.includes("--console");
-    noautostart = fileName.includes("--no-startup");
-    console.log(process.execPath)
-    var autoLauncher = new AutoLaunch({
-        name: 'OpenRGBBridge',
-        path: process.execPath,
-    });
-    if (!noautostart) {
-        autoLauncher.enable();
-        autoLauncher.isEnabled()
-            .then(function (isEnabled) {
-                if (isEnabled) {
-                    return;
-                }
-                autoLauncher.enable();
-            })
-            .catch(function (err) {
-                console.error(err);
-            });
-    }
-    else {
-        autoLauncher.disable();
-    }
-}
+fileName = __filename.split("\\").pop().split("/").pop();
+console.log("Starting js version server: ", fileName, "on port", port);
+portMatch = fileName.match(/--port=\${(\d+)}/);
+consoleMode = true;
 
 if (consoleMode) {
-    //ConsoleWindow.showConsole();
     console.log("Console mode enabled");
 }
 
@@ -160,10 +129,9 @@ app.get("/GetAvalaibleDevices", async (req, res) => {
 app.get("/setColors", async (req, res) => {
     try {
         let { colors, deviceId } = req.query;
-
         colors = JSON.parse(colors);
 
-        //console.log("Changing colors of device", deviceId, "to", colors);
+        console.log("Changing colors of device", deviceId, "to", colors);
 
         if (!colors || !deviceId) {
             return res.status(400).send("Both colors and deviceId parameters are required.");
