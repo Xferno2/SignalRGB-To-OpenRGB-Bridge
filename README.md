@@ -4,6 +4,12 @@ This plugin allows you for exemple to make Nvidia Founder Editions graphics card
 
 [![Click here to add this repo to SignalRGB](https://github.com/SRGBmods/qmk-plugins/blob/main/_images/add-to-signalrgb.png)](https://srgbmods.net/s?p=addon/install?url=https://github.com/Xferno2/SignalRGB-To-OpenRGB-Bridge) (changed repo to this repo)
 
+## What was changed in this fork?
+- Removed suspicios module
+- Added tray icon
+- Fixed packet size invalid
+- To start the program hidden on startul go to BridgeServer.vbs change the path to server.exe on your local machine then add BridgeServer.vbs to task scheduler.
+
 ## What is working Right now ?
 - Device from OpenRGB sync with SignalRGB
 - Multiple zones control support 

@@ -3,6 +3,27 @@
     "auto-launch": "^5.0.6",
     "express": "^4.18.2",
     "openrgb-sdk": "^0.5.2",
-    "ps-list": "^8.1.1"
-  }
+    "ps-list": "^8.1.1",
+    "main": "server.js"
+  },
+  "name": "signalrgb-to-openrgb-bridge",
+  "version": "1.0.0",
+  "description": "An add-on for signalRGB that allows to control OpenRGB Devices\r This plugin allows you for exemple to make Nvidia Founder Editions graphics cards compatible with signalRGB !. It also remove the lag with the G915 keyboard. but it's not limited to those devices, it support all devices supported by OpenRGB ! (you can use this plugin to fill in the gabs of supported devices by signalRGB in your setup). ⚠️ This plugin does not bring the support of all devices to signalRGB  but only the devices supported by openRGB in the first place.",
+  "main": "OpenRGBBridge.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xferno2/SignalRGB-To-OpenRGB-Bridge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xferno2/SignalRGB-To-OpenRGB-Bridge/issues"
+  },
+  "homepage": "https://github.com/Xferno2/SignalRGB-To-OpenRGB-Bridge#readme"
 }

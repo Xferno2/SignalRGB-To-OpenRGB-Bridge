@@ -1,0 +1,1 @@
+CreateObject("Wscript.Shell").Run "G:\GitHub\Bridge\SignalRGB-To-OpenRGB-Bridge\server.exe", 0, True
