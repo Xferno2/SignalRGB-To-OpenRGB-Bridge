@@ -37,7 +37,7 @@ export function Initialize() {
 				subdeviceLedsCount.push(ledCount);
 			}
 		}
-		device.log(subdeviceLedsCount);
+		//device.log(subdeviceLedsCount);
 
 
 		for (let i = 0; i < controller.zones.length; i++) {
@@ -69,8 +69,8 @@ export function Initialize() {
 
 					uniqueSubdeviceLedPosition = subdeviceLedsPositionsX.map((x) => [x, subdeviceLedsPositionsY[0]]);
 					allSubdeviceLedsPosition.push(uniqueSubdeviceLedPosition);
-					device.log(allSubdeviceLedsPosition);
-					device.log(uniqueSubdeviceLedPosition);
+					//device.log(allSubdeviceLedsPosition);
+					//device.log(uniqueSubdeviceLedPosition);
 
 				}
 			} else {
@@ -115,9 +115,9 @@ export function Initialize() {
 						subdeviceLedsNames.push(controller.leds[k].name);
 					}
 
-					device.log(subdeviceLedsNames);
-					device.log(subdeviceLedsPositionsX);
-					device.log(subdeviceLedsPositionsY);
+					//device.log(subdeviceLedsNames);
+					//device.log(subdeviceLedsPositionsX);
+					//device.log(subdeviceLedsPositionsY);
 
 					device.setSubdeviceLeds(controller.id + "_" + controller.zones[i].name, subdeviceLedsNames, subdeviceLedsPositionsX, subdeviceLedsPositionsY);
 
@@ -125,8 +125,8 @@ export function Initialize() {
 
 					uniqueSubdeviceLedPosition = subdeviceLedsPositionsX.map((x, i) => [x, subdeviceLedsPositionsY[i]]);
 					allSubdeviceLedsPosition.push(uniqueSubdeviceLedPosition);
-					device.log(allSubdeviceLedsPosition);
-					device.log(uniqueSubdeviceLedPosition);
+					//device.log(allSubdeviceLedsPosition);
+					//device.log(uniqueSubdeviceLedPosition);
 
 				}
 			}
@@ -145,8 +145,8 @@ export function Initialize() {
 				w++;
 			}
 			deviceLedsPositions = deviceLedsPositionsX.map((x) => [x, deviceLedsPositionsY[0]]);
-			device.log(deviceLedsPositions)
-			device.log(controller.leds.length)
+			//device.log(deviceLedsPositions)
+			//device.log(controller.leds.length)
 			device.setControllableLeds(deviceLedsNames, deviceLedsPositions);
 			device.setSize([controller.leds.length, 1]);
 
@@ -181,9 +181,9 @@ export function Initialize() {
 					deviceLedsPositionsY.push(y);
 				}
 
-				device.log(deviceLedsNames);
-				device.log(deviceLedsPositionsX);
-				device.log(deviceLedsPositionsY);
+				//device.log(deviceLedsNames);
+				//device.log(deviceLedsPositionsX);
+				//device.log(deviceLedsPositionsY);
 
 				deviceLedsPositions = deviceLedsPositionsX.map((x, i) => [x, deviceLedsPositionsY[i]]);
 				device.setControllableLeds(deviceLedsNames, deviceLedsPositions);
@@ -216,29 +216,31 @@ export function Render() {
 					color = hexToRgb(forcedColor);
 				} else {
 					color.push(device.subdeviceColor(subdevices[i], ledX, ledY));
-					// device.log(device.subdeviceColor(subdevices[i], ledX, ledY))
+					device.log(device.subdeviceColor(subdevices[i], ledX, ledY))
 					// device.log(subdevices[i])
 				}
 			}
-			//device.log(color);
-
-
 		}
+		//device.log(color);
 		protocol.setMultiColors(color);
 	} else {
 		let color = [];
+		//device.log(controller.leds.length)
 		for (let i = 0; i < controller.leds.length; i++) {
 			//device.log(deviceLedsPositions)
 			let ledX = deviceLedsPositions[i][0];
 			let ledY = deviceLedsPositions[i][1];
+			//device.log("test");
 			if (LightingMode === "Forced") {
 				color = hexToRgb(forcedColor);
+				//device.log("text");
 			} else {
 				//colors are an array of 3 integers push the
 				color.push(device.color(ledX, ledY));
+				//device.log(device.color(ledX, ledY));
 			}
-			//device.log(color);
 		}
+		//device.log(color);
 		protocol.setMultiColors(color);
 	}
 	//device.log(subdevices);
@@ -347,8 +349,8 @@ class OpenRGBProtocol {
 		})
 
 		//device.log(colors);
-		device.log(colors);
-		device.log (JSON.stringify(colors));
+		//device.log(colors);
+		//device.log (JSON.stringify(colors));
 
 		xhr.open("GET", `http://localhost:9730/setColors?host=${this.host}&port=${this.port}&colors=${JSON.stringify(colors)}&deviceId=${this.deviceId}`, true);
 		xhr.onreadystatechange = function () {
@@ -369,9 +371,11 @@ class OpenRGBProtocol {
 				blue: colors[i][2]
 			});
 		}
-		//device.log(colorsArray);
+		//device.log(colors);
 		const xhr = new XMLHttpRequest();
-		xhr.open("GET", `http://localhost:9730/setColors?host=${this.host}&port=${this.port}&colors=${JSON.stringify(colorsArray)}&deviceId=${this.deviceId}`, true);
+		let url = `http://localhost:9730/setColors?host=${this.host}&port=${this.port}&colors=${JSON.stringify(colorsArray)}&deviceId=${this.deviceId}`;
+		xhr.open("GET", url, true);
+		//device.log(url);
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4 && xhr.status === 200) {
 				return;
